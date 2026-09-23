@@ -451,10 +451,6 @@ WITH TB_EDAD as (
     SELECT IDCliente,
            Genero,
            DATEDIFF(YEAR, FechaNacimiento, GETDATE())
-             - CASE 
-					WHEN (MONTH(FechaNacimiento) > MONTH(GETDATE())) OR (MONTH(FechaNacimiento) = MONTH(GETDATE()) AND DAY(FechaNacimiento) > DAY(GETDATE()))
-						THEN 1 
-					ELSE 0 END as Edad
     FROM DIM_CLIENTES
 ),
 TB_SEGMENTO as (
@@ -484,7 +480,7 @@ ORDER BY CASE TS.SegmentoEdad
          END,
          TS.Genero;
 ```
-![alt text](Pictures/P8.png)
+![alt text](Pictures/P8.1.png)
 
 La venta por cliente es casi idéntica en todos los segmentos, entre 70,066 y 74,185. Las diferencias de venta total se explican por cuántos clientes tiene cada grupo, no por cuánto compra cada uno, así que edad y género no sirven para segmentar.
 
